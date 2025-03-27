@@ -1,1 +1,7 @@
 @import "tailwindcss";
+  body {
+    --max-width-custom: 1000px; /* تعریف متغیر */
+    max-width: var(--max-width-custom); /* اعمال در body */
+    margin: 0 auto; /* وسط‌چین کردن */
+  }
+  
