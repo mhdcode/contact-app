@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
+import ContactList from './ContactList'
 
 function Contact() {
   const [contacts,setcontacts] = useState([])
+  const [alaert , setalert]=useState("")
 const [contact,setcontact] = useState({
   name:"",
   lastname:"",
   email:"",
   number:"",
-
 })
 function changehandler(event){
 const name = event.target.name
@@ -17,6 +18,15 @@ setcontact((contact)=>({...contact ,[name]:value }))
 
 }
 function addhandler(){
+  if (
+    !contact.email || !contact.lastname|| !contact.email||!contact.number
+
+  
+  ) {
+    setalert("please enter valid data!")
+    return;
+  }
+  setalert("")
 setcontacts((contacts)=>({...contacts,contact}))
 setcontact(
 {  name:"",
@@ -25,7 +35,7 @@ setcontact(
   number:"",
 }
 )
-console.log(contacts);
+
 
 
 }
@@ -38,6 +48,10 @@ console.log(contacts);
             <input className='border' type="number" placeholder='Phone'  onChange={changehandler} name='number' value={contact.number}/>
             <button onClick={addhandler} className='bg-amber-200 rounded-sm' type='button'>Add contact</button>
         </div>
+        <div>
+          {alaert&& <p>{alaert}</p>}
+        </div>
+        <ContactList contacts={contacts}/>
     </div>
   )
 }
