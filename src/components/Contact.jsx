@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ContactList from './ContactList'
-
+import inputs from '../constant/input'
 function Contact() {
   const [contacts,setcontacts] = useState([])
   const [alaert , setalert]=useState("")
@@ -41,13 +41,11 @@ setcontact(
 }
   return (
     <div className='flex justify-center'>
-        <div className=' bg-amber-500 w-[500px]'>
-            <input className='border' type="text" placeholder='Name'  onChange={changehandler} name='name' value={contact.name} />
-            <input className='border' type="text" placeholder='Last Name'onChange={changehandler} name='lastname'  value={contact.lastname} />
-            <input className='border' type="email" placeholder='Email'  onChange={changehandler} name='email' value={contact.email}/>
-            <input className='border' type="number" placeholder='Phone'  onChange={changehandler} name='number' value={contact.number}/>
+      {
+        inputs.map((input,index)=>(<input className='border' type={input.type} name={input.name} placeholder={input.placeholder} onChange={changehandler} value={contact[input.name]} key={index}/>))
+      }
             <button onClick={addhandler} className='bg-amber-200 rounded-sm' type='button'>Add contact</button>
-        </div>
+      
         <div>
           {alaert&& <p>{alaert}</p>}
         </div>
